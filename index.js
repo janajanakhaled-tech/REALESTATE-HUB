@@ -1,3 +1,4 @@
+const authRouter = require("./routes/auth-routes");
 const path = require("path");
 require("dotenv").config();
 
@@ -9,6 +10,7 @@ const propertyRouter = require("./routes/property-routes.js");
 const app = express();
 
 app.use(express.json());
+app.use("/api/v1/auth", authRouter);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/properties", propertyRouter);
