@@ -61,43 +61,34 @@ Deletes a property from the database.
 Jana Khaled Gamal
 
 
-## Authentication Module
+Authentication Module
 
-### Description
+The authentication module is responsible for handling user registration and login in the RealEstate Hub project. It uses bcryptjs to securely hash user passwords and JSON Web Tokens (JWT) for authentication.
 
-The Authentication Module provides user registration and login functionality using Node.js, Express.js, MongoDB, Mongoose, bcryptjs, and JSON Web Tokens (JWT).
+User Roles
 
-It allows users to:
-- Create a new account
-- Login using email and password
-- Receive a JWT token after successful authentication
-- Access protected routes using the JWT token
+The project currently supports two user roles:
 
-### User Roles
+* Customer
+* Admin
 
-The system currently supports the following roles:
+New users are registered as customer by default.
 
-- Customer
-- Admin
+Authentication Routes
 
-New users are registered as `customer` by default.
+Method	Endpoint	Description
+POST	/api/v1/auth/signup	Create a new user account
+POST	/api/v1/auth/login	Login using email and password
+GET	/api/v1/auth/me	Get the currently authenticated user’s information
 
-### Authentication Routes
+Signup
 
-| Method | Route | Description |
-|--------|-------|-------------|
-| POST | `/api/v1/auth/signup` | Register a new user |
-| POST | `/api/v1/auth/login` | Login an existing user |
-| GET | `/api/v1/auth/me` | Access the authenticated user's data |
+To create a new account, send a POST request to:
 
-### Signup
+/api/v1/auth/signup
 
-**POST**
-`/api/v1/auth/signup`
+Example:
 
-Example request:
-
-```json
 {
   "firstName": "Jana",
   "lastName": "Khaled",
@@ -105,3 +96,66 @@ Example request:
   "password": "12345678",
   "phone": "01012345678"
 }
+
+After a successful signup, the API returns a JWT token that can be used to access protected routes.
+
+Login
+
+To login, send a POST request to:
+
+/api/v1/auth/login
+
+Example:
+
+{
+  "email": "jana@gmail.com",
+  "password": "12345678"
+}
+
+The API returns a JWT token when the login information is correct.
+
+If the email or password is incorrect, the API returns an authentication error.
+
+Protected Route
+
+The /api/v1/auth/me route is protected and requires a valid JWT token.
+
+To access it using Postman:
+
+1. Select the GET method.
+2. Enter /api/v1/auth/me.
+3. Open the Authorization tab.
+4. Select Bearer Token.
+5. Add the token received from signup or login.
+6. Send the request.
+
+The authenticated user’s information will be returned if the token is valid.
+
+Technologies Used
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* bcryptjs
+* jsonwebtoken
+* Postman
+
+Running the Module
+
+Install the project dependencies:
+
+npm install
+
+Create a .env file and add the required environment variables:
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=7d
+
+Then start the server:
+
+npm run dev
+
+The authentication APIs can then be tested using Postman. 
