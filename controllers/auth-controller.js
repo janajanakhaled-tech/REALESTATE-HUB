@@ -6,7 +6,7 @@ const signup = async (req, res) => {
   try {
     const user = await User.create({
       ...req.body,
-      role: "customer",
+       role: req.body.role || "customer",
     });
 
     const token = generateToken(user);
