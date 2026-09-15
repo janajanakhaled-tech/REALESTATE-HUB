@@ -1,0 +1,120 @@
+<div class="edit-profile-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      RealEstate Hub
+    </div>
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="goBack()">
+      Back to Profile
+    </button>
+
+  </nav>
+
+  <div class="container">
+
+    <h1>Edit Profile</h1>
+
+    @if (isLoading) {
+
+      <div class="message">
+        Loading profile...
+      </div>
+
+    } @else {
+
+      <div class="edit-card">
+
+        <form
+          [formGroup]="profileForm"
+          (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+
+            <label>First Name</label>
+
+            <input
+              type="text"
+              formControlName="firstName">
+
+            @if (
+              profileForm.get('firstName')?.invalid &&
+              profileForm.get('firstName')?.touched
+            ) {
+              <small>First name is required.</small>
+            }
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Last Name</label>
+
+            <input
+              type="text"
+              formControlName="lastName">
+
+            @if (
+              profileForm.get('lastName')?.invalid &&
+              profileForm.get('lastName')?.touched
+            ) {
+              <small>Last name is required.</small>
+            }
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Phone</label>
+
+            <input
+              type="text"
+              formControlName="phone">
+
+            @if (
+              profileForm.get('phone')?.invalid &&
+              profileForm.get('phone')?.touched
+            ) {
+              <small>Phone is required.</small>
+            }
+
+          </div>
+
+          @if (message) {
+
+            <div class="success">
+              {{ message }}
+            </div>
+
+          }
+
+          @if (errorMessage) {
+
+            <div class="error">
+              {{ errorMessage }}
+            </div>
+
+          }
+
+          <button
+            type="submit"
+            class="save-button"
+            [disabled]="isSaving">
+
+            {{ isSaving ? 'Saving...' : 'Save Changes' }}
+
+          </button>
+
+        </form>
+
+      </div>
+
+    }
+
+  </div>
+
+</div> 

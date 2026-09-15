@@ -1,0 +1,149 @@
+<div class="profile-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      RealEstate Hub
+    </div>
+
+    <div class="nav-buttons">
+
+      <button
+        type="button"
+        (click)="goHome()">
+        Home
+      </button>
+
+      <button
+        type="button"
+        (click)="goProperties()">
+        Properties
+      </button>
+
+      <button
+        type="button"
+        class="logout"
+        (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+  <div class="container">
+
+    <h1>My Profile</h1>
+
+    @if (isLoading) {
+
+      <div class="message">
+        Loading profile...
+      </div>
+
+    } @else if (errorMessage) {
+
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+
+    } @else if (user) {
+
+      <div class="profile-card">
+
+        <div class="profile-avatar">
+
+          @if (user.image) {
+
+            <img
+              [src]="'http://localhost:5000/uploads/' + user.image"
+              alt="Profile">
+
+          } @else {
+
+            <span>
+              {{ user.firstName?.charAt(0) }}
+            </span>
+
+          }
+
+        </div>
+
+        <button
+          type="button"
+          class="edit-button"
+          (click)="goEditProfile()">
+          Edit Profile
+        </button>
+
+        <div class="profile-info">
+
+          <div class="info-item">
+
+            <span class="label">
+              First Name
+            </span>
+
+            <span class="value">
+              {{ user.firstName }}
+            </span>
+
+          </div>
+
+          <div class="info-item">
+
+            <span class="label">
+              Last Name
+            </span>
+
+            <span class="value">
+              {{ user.lastName }}
+            </span>
+
+          </div>
+
+          <div class="info-item">
+
+            <span class="label">
+              Email
+            </span>
+
+            <span class="value">
+              {{ user.email }}
+            </span>
+
+          </div>
+
+          <div class="info-item">
+
+            <span class="label">
+              Phone
+            </span>
+
+            <span class="value">
+              {{ user.phone }}
+            </span>
+
+          </div>
+
+          <div class="info-item">
+
+            <span class="label">
+              Role
+            </span>
+
+            <span class="value role">
+              {{ user.role }}
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div> 

@@ -1,0 +1,137 @@
+<div class="users-page">
+  <nav class="navbar">
+    <div class="logo">
+      RealEstate Hub
+    </div>
+    <div class="nav-buttons">
+      <button
+        type="button"
+        (click)="goHome()">
+        Home
+      </button>
+      <button
+        type="button"
+        (click)="goDashboard()">
+        Dashboard
+      </button>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="page-header">
+      <h1>
+        User Management
+      </h1>
+      <p>
+        Manage and view all users
+      </p>
+    </div>
+    @if (isLoading) {
+      <div class="message">
+        Loading users...
+      </div>
+    }
+    @if (errorMessage) {
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+    }
+    @if (!isLoading && !errorMessage) {
+      <div class="users-card">
+        <div class="users-header">
+          <h2>
+            All Users
+          </h2>
+          <span>
+            Total: {{ users.length }}
+          </span>
+        </div>
+        @if (users.length === 0) {
+          <div class="empty">
+            No users found.
+          </div>
+        }
+        @if (users.length > 0) {
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    #
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                  <th>
+                    Role
+                  </th>
+                  <th>
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (
+                  user of users;
+                  track user._id;
+                  let i = $index
+                ) {
+                  <tr>
+                    <td>
+                      {{ i + 1 }}
+                    </td>
+                    <td>
+                      {{ user.firstName }}
+                      {{ user.lastName }}
+                    </td>
+                    <td>
+                      {{ user.email }}
+                    </td>
+                    <td>
+                      {{ user.phone || 'N/A' }}
+                    </td>
+                    <td>
+                      <span
+                        class="role"
+                        [class.admin]="user.role === 'admin'"
+                        [class.customer]="user.role === 'customer'"
+                        [class.agent]="user.role === 'agent'">
+                        {{ user.role }}
+                      </span>
+                    </td>
+                    <td>
+                      @if (user.role !== 'admin') {
+                        <button
+                          type="button"
+                          class="role-button"
+                          (click)="changeRole(user._id, 'agent')">
+                          Make Agent
+                        </button>
+                        <button
+                          type="button"
+                          class="role-button customer-button"
+                          (click)="changeRole(user._id, 'customer')">
+                          Make Customer
+                        </button>
+                      }
+                      @if (user.role === 'admin') {
+                        <span class="admin-label">
+                          Admin Account
+                        </span>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div> 

@@ -1,0 +1,277 @@
+<div class="edit-property-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      RealEstate Hub
+    </div>
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="goBack()">
+
+      Back
+
+    </button>
+
+  </nav>
+
+
+  <div class="container">
+
+    <h1>
+      Edit Property
+    </h1>
+
+
+    @if (isLoading) {
+
+      <div class="message">
+        Loading property...
+      </div>
+
+    } @else {
+
+      <div class="edit-card">
+
+        <form
+          [formGroup]="propertyForm"
+          (ngSubmit)="onSubmit()">
+
+
+          <div class="form-group">
+
+            <label>
+              Title
+            </label>
+
+            <input
+              type="text"
+              formControlName="title">
+
+            @if (
+              propertyForm.get('title')?.invalid &&
+              propertyForm.get('title')?.touched
+            ) {
+
+              <small>
+                Title is required.
+              </small>
+
+            }
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Description
+            </label>
+
+            <textarea
+              formControlName="description">
+            </textarea>
+
+            @if (
+              propertyForm.get('description')?.invalid &&
+              propertyForm.get('description')?.touched
+            ) {
+
+              <small>
+                Description is required.
+              </small>
+
+            }
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Price
+            </label>
+
+            <input
+              type="number"
+              formControlName="price">
+
+            @if (
+              propertyForm.get('price')?.invalid &&
+              propertyForm.get('price')?.touched
+            ) {
+
+              <small>
+                Please enter a valid price.
+              </small>
+
+            }
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Location
+            </label>
+
+            <input
+              type="text"
+              formControlName="location">
+
+            @if (
+              propertyForm.get('location')?.invalid &&
+              propertyForm.get('location')?.touched
+            ) {
+
+              <small>
+                Location is required.
+              </small>
+
+            }
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Property Type
+            </label>
+
+            <select
+              formControlName="propertyType">
+
+              <option value="">
+                Select Type
+              </option>
+
+              <option value="Villa">
+                Villa
+              </option>
+
+              <option value="Apartment">
+                Apartment
+              </option>
+
+              <option value="House">
+                House
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Bedrooms
+            </label>
+
+            <input
+              type="number"
+              formControlName="bedrooms">
+
+            @if (
+              propertyForm.get('bedrooms')?.invalid &&
+              propertyForm.get('bedrooms')?.touched
+            ) {
+
+              <small>
+                Please enter the number of bedrooms.
+              </small>
+
+            }
+
+          </div>
+
+
+          <!-- Change Image -->
+
+          <div class="form-group">
+
+            <label>
+              Change Image
+            </label>
+
+            <input
+              type="file"
+              accept="image/*"
+              (change)="onFileSelected($event)">
+
+            @if (selectedImage) {
+
+              <p class="file-name">
+                Selected: {{ selectedImage.name }}
+              </p>
+
+            }
+
+          </div>
+
+
+          <!-- Change Document -->
+
+          <div class="form-group">
+
+            <label>
+              Change Document
+            </label>
+
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              (change)="onDocumentSelected($event)">
+
+            @if (selectedDocument) {
+
+              <p class="file-name">
+                Selected: {{ selectedDocument.name }}
+              </p>
+
+            }
+
+          </div>
+
+
+          @if (message) {
+
+            <div class="success">
+              {{ message }}
+            </div>
+
+          }
+
+
+          @if (errorMessage) {
+
+            <div class="error">
+              {{ errorMessage }}
+            </div>
+
+          }
+
+
+          <button
+            type="submit"
+            class="save-button"
+            [disabled]="isSaving">
+
+            {{ isSaving ? 'Saving...' : 'Save Changes' }}
+
+          </button>
+
+
+        </form>
+
+      </div>
+
+    }
+
+  </div>
+
+</div> 

@@ -1,0 +1,224 @@
+<div class="bookings-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      RealEstate Hub
+    </div>
+
+    <div class="nav-buttons">
+
+      <button
+        type="button"
+        class="home-button"
+        (click)="goHome()">
+        Home
+      </button>
+
+      <button
+        type="button"
+        class="properties-button"
+        (click)="goProperties()">
+        Properties
+      </button>
+
+    </div>
+
+  </nav>
+
+  <div class="container">
+
+    <div class="page-header">
+
+      <div>
+
+        <h1>
+          My Bookings
+        </h1>
+
+        <p>
+          View and manage your property viewing bookings
+        </p>
+
+      </div>
+
+    </div>
+
+    @if (isLoading) {
+
+      <div class="message">
+        Loading bookings...
+      </div>
+
+    }
+
+    @if (errorMessage) {
+
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+
+    }
+
+    @if (
+      !isLoading &&
+      !errorMessage &&
+      bookings.length === 0
+    ) {
+
+      <div class="empty">
+
+        <h2>
+          No Bookings Yet
+        </h2>
+
+        <p>
+          You haven't booked any property viewings yet.
+        </p>
+
+        <button
+          type="button"
+          class="browse-button"
+          (click)="goProperties()">
+          Browse Properties
+        </button>
+
+      </div>
+
+    }
+
+    @if (
+      !isLoading &&
+      bookings.length > 0
+    ) {
+
+      <div class="booking-grid">
+
+        @for (
+          booking of bookings;
+          track booking._id
+        ) {
+
+          <div class="booking-card">
+
+            <div class="booking-header">
+
+              <h2>
+                {{
+                  booking.property?.title ||
+                  'Property'
+                }}
+              </h2>
+
+              <span
+                class="status"
+                [class.pending]="booking.status === 'pending'"
+                [class.approved]="booking.status === 'approved'"
+                [class.rejected]="booking.status === 'rejected'"
+                [class.cancelled]="booking.status === 'cancelled'">
+
+                {{ booking.status }}
+
+              </span>
+
+            </div>
+
+            <p class="location">
+
+              📍
+              {{
+                booking.property?.location ||
+                'Location not available'
+              }}
+
+            </p>
+
+            <p class="property-type">
+
+              {{
+                booking.property?.propertyType ||
+                'Property'
+              }}
+
+            </p>
+
+            <div class="booking-info">
+
+              <div>
+
+                <strong>
+                  Viewing Date
+                </strong>
+
+                <p>
+                  {{
+                    booking.date
+                      | date:'medium'
+                  }}
+                </p>
+
+              </div>
+
+              <div>
+
+                <strong>
+                  Price
+                </strong>
+
+                <p class="price">
+
+                  $
+                  {{
+                    booking.property?.price ||
+                    0
+                  }}
+
+                </p>
+
+              </div>
+
+            </div>
+
+            @if (booking.notes) {
+
+              <div class="notes">
+
+                <strong>
+                  Notes
+                </strong>
+
+                <p>
+                  {{ booking.notes }}
+                </p>
+
+              </div>
+
+            }
+
+            @if (
+              booking.status !== 'cancelled' &&
+              booking.status !== 'rejected'
+            ) {
+
+              <button
+                type="button"
+                class="cancel-button"
+                (click)="cancelBooking(booking._id)">
+
+                Cancel Booking
+
+              </button>
+
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  </div>
+
+</div> 

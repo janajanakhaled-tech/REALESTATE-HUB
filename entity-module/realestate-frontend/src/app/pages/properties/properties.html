@@ -1,0 +1,75 @@
+<div class="properties-page">
+  <nav class="navbar">
+    <div class="logo">
+      RealEstate Hub
+    </div>
+    <button
+      type="button"
+      class="home-button"
+      (click)="goHome()">
+      Home
+    </button>
+  </nav>
+  <div class="container">
+    <div class="page-header">
+      <div>
+        <h1>Properties</h1>
+        <p>Find your perfect property</p>
+      </div>
+      @if (isAgentOrAdmin()) {
+        <button
+          type="button"
+          class="add-button"
+          (click)="addProperty()">
+          Add Property
+        </button>
+      }
+    </div>
+    <div class="property-grid">
+      <div
+        class="property-card"
+        *ngFor="let property of properties()">
+        <div class="property-image-container">
+          <img
+            *ngIf="property.image"
+            class="property-image"
+            [src]="'http://localhost:5000/uploads/properties/' + property.image"
+            [alt]="property.title">
+          <div
+            *ngIf="!property.image"
+            class="no-image">
+            No Image
+          </div>
+        </div>
+        <div class="property-content">
+          <h2>
+            {{ property.title }}
+          </h2>
+          <p class="location">
+            📍 {{ property.location }}
+          </p>
+          <p class="type">
+            {{ property.propertyType }}
+          </p>
+          <p class="description">
+            {{ property.description }}
+          </p>
+          <div class="details">
+            <span>
+              🛏 {{ property.bedrooms }} Bedrooms
+            </span>
+            <span class="price">
+              ${{ property.price }}
+            </span>
+          </div>
+          <button
+            type="button"
+            class="view-button"
+            (click)="viewProperty(property._id!)">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

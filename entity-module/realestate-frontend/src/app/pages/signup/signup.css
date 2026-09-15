@@ -1,0 +1,86 @@
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f0ff;
+}
+
+.signup-card {
+  width: 430px;
+  padding: 35px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(123, 63, 152, 0.15);
+}
+
+h1 {
+  text-align: center;
+  color: #7b3f98;
+  margin-bottom: 10px;
+}
+
+h2 {
+  text-align: center;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 17px;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: bold;
+  color: #555;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #7b3f98;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
+  color: red;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: #7b3f98;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+.success {
+  color: green;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 15px;
+} 

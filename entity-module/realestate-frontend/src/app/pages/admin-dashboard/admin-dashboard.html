@@ -1,0 +1,224 @@
+<div class="dashboard-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      RealEstate Hub
+    </div>
+
+    <div class="nav-buttons">
+
+      <button
+        type="button"
+        (click)="goHome()">
+        Home
+      </button>
+
+      <button
+        type="button"
+        (click)="goProperties()">
+        Properties
+      </button>
+
+      <button
+        type="button"
+        (click)="goBookings()">
+        Bookings
+      </button>
+      <button
+  type="button"
+  (click)="goUsers()">
+
+  Manage Users
+
+</button>
+
+    </div>
+
+  </nav>
+
+  <div class="container">
+
+    <div class="page-header">
+
+      <h1>
+        Admin Dashboard
+      </h1>
+
+      <p>
+        Overview of your RealEstate Hub platform
+      </p>
+
+    </div>
+
+    @if (isLoading) {
+
+      <div class="message">
+        Loading dashboard...
+      </div>
+
+    }
+
+    @if (errorMessage) {
+
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+
+    }
+
+    @if (!isLoading) {
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+
+          <div class="icon">
+            👥
+          </div>
+
+          <div>
+
+            <h3>
+              Total Users
+            </h3>
+
+            <p>
+              {{ totalUsers }}
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="icon">
+            🏠
+          </div>
+
+          <div>
+
+            <h3>
+              Total Properties
+            </h3>
+
+            <p>
+              {{ totalProperties }}
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="icon">
+            📅
+          </div>
+
+          <div>
+
+            <h3>
+              Total Bookings
+            </h3>
+
+            <p>
+              {{ totalBookings }}
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="icon">
+            ⏳
+          </div>
+
+          <div>
+
+            <h3>
+              Pending
+            </h3>
+
+            <p>
+              {{ pendingBookings }}
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="icon">
+            ✅
+          </div>
+
+          <div>
+
+            <h3>
+              Approved
+            </h3>
+
+            <p>
+              {{ approvedBookings }}
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="icon">
+            ❌
+          </div>
+
+          <div>
+
+            <h3>
+              Rejected
+            </h3>
+
+            <p>
+              {{ rejectedBookings }}
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="quick-actions">
+
+        <h2>
+          Quick Actions
+        </h2>
+
+        <div class="action-buttons">
+
+          <button
+            type="button"
+            (click)="goBookings()">
+            Manage Bookings
+          </button>
+
+          <button
+            type="button"
+            (click)="goProperties()">
+            View Properties
+          </button>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div> 

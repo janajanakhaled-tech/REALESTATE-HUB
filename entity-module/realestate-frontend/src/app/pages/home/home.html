@@ -1,0 +1,89 @@
+<div class="home-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      RealEstate Hub
+    </div>
+
+    <div class="nav-buttons">
+ <a
+  routerLink="/properties">
+  Properties
+</a>
+
+      @if (user?.role === 'customer') {
+  <button
+    type="button"
+    (click)="myBookings()">
+    My Bookings
+  </button>
+}
+      @if (user?.role === 'admin') {
+
+        <button
+          type="button"
+          (click)="adminDashboard()">
+          Admin Dashboard
+        </button>
+
+        <button
+          type="button"
+          (click)="adminBookings()">
+          Admin Bookings
+        </button>
+
+      }
+
+      <button
+        type="button"
+        (click)="profile()">
+        Profile
+      </button>
+
+      <button
+        type="button"
+        class="logout"
+        (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Find Your Perfect Home
+      </h1>
+
+
+      @if (user) {
+
+        <p class="welcome">
+          Welcome, {{ user.firstName }} {{ user.lastName }}
+        </p>
+
+      }
+
+
+      <p class="description">
+        Discover properties that match your needs
+        and find the perfect place for you.
+      </p>
+
+ <a
+  routerLink="/properties"
+  class="main-button">
+  View Properties
+</a>
+
+    </div>
+
+  </section>
+
+</div> 

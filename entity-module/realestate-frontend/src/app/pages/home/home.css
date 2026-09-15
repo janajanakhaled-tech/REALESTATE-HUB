@@ -1,0 +1,86 @@
+.home-page {
+  min-height: 100vh;
+  background: #f8f0ff;
+}
+
+.navbar {
+  height: 75px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  box-shadow: 0 2px 10px rgba(123, 63, 152, 0.1);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #7b3f98;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-buttons button {
+  border: none;
+  background: transparent;
+  color: #7b3f98;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.nav-buttons .logout {
+  background: #7b3f98;
+  color: white;
+  border-radius: 8px;
+}
+
+.hero {
+  min-height: calc(100vh - 75px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 700px;
+  padding: 40px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  color: #7b3f98;
+  margin-bottom: 20px;
+}
+
+.welcome {
+  font-size: 22px;
+  font-weight: bold;
+  color: #7b3f98;
+}
+
+.description {
+  color: #555;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.main-button {
+  border: none;
+  background: #7b3f98;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.main-button:hover {
+  opacity: 0.9;
+}

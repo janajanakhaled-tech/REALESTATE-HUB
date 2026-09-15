@@ -1,0 +1,119 @@
+<div class="details-page">
+  <nav class="navbar">
+    <div class="logo">
+      RealEstate Hub
+    </div>
+    <button
+      type="button"
+      class="back-button"
+      (click)="goBack()">
+      Back to Properties
+    </button>
+  </nav>
+  <div class="container">
+    @if (isLoading) {
+      <div class="message">
+        Loading property...
+      </div>
+    }
+    @if (errorMessage) {
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+    }
+    @if (
+      !isLoading &&
+      !errorMessage &&
+      property
+    ) {
+      <div class="property-details">
+        @if (property.image) {
+          <img
+            class="property-image"
+            [src]="
+              'http://localhost:5000/uploads/properties/' +
+              property.image
+            "
+            [alt]="property.title">
+        } @else {
+          <div class="no-image">
+            No Image
+          </div>
+        }
+        <div class="property-info">
+          <h1>
+            {{ property.title }}
+          </h1>
+          <p class="location">
+            📍 {{ property.location }}
+          </p>
+          <p class="type">
+            {{ property.propertyType }}
+          </p>
+          <div class="details-row">
+            <span>
+              🛏 {{ property.bedrooms }} Bedrooms
+            </span>
+            <span class="price">
+              ${{ property.price }}
+            </span>
+          </div>
+          <h2>
+            Description
+          </h2>
+          <p class="description">
+            {{ property.description }}
+          </p>
+          @if (property.document) {
+            <div class="document-section">
+              <h2>
+                Property Document
+              </h2>
+              <a
+                class="document-button"
+                [href]="
+                  'http://localhost:5000/uploads/properties/' +
+                  property.document
+                "
+                target="_blank">
+                📄 View Document
+              </a>
+            </div>
+          }
+          <div class="action-buttons">
+            @if (isAgentOrAdmin()) {
+              <button
+                type="button"
+                class="edit-button"
+                (click)="goEditProperty()">
+                Edit Property
+              </button>
+            }
+             @if (currentUser?.role === 'customer') {
+  <button
+    type="button"
+    class="book-button"
+    (click)="bookViewing()">
+    Book Viewing
+  </button>
+}
+            @if (isAgentOrAdmin()) {
+              <button
+                type="button"
+                class="add-button"
+                (click)="addProperty()">
+                Add Another Property
+              </button>
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteProperty()">
+                Delete Property
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div> 

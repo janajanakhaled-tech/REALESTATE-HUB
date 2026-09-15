@@ -1,0 +1,91 @@
+<div class="booking-page">
+  <nav class="navbar">
+    <div class="logo">
+      RealEstate Hub
+    </div>
+    <button
+      type="button"
+      class="back-button"
+      (click)="goBack()">
+      Back to Property
+    </button>
+  </nav>
+  <div class="container">
+    <h1>Book a Viewing</h1>
+    @if (isLoading) {
+      <div class="message">
+        Loading property...
+      </div>
+    } @else if (errorMessage && !property) {
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+    } @else if (property) {
+      <div class="booking-card">
+        <div class="property-summary">
+          <h2>
+            {{ property.title }}
+          </h2>
+          <p>
+            📍 {{ property.location }}
+          </p>
+          <p>
+            {{ property.propertyType }}
+          </p>
+          <p class="price">
+            ${{ property.price }}
+          </p>
+        </div>
+        <form
+          [formGroup]="bookingForm"
+          (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>
+              Viewing Date & Time
+            </label>
+            <input
+              type="datetime-local"
+              formControlName="date">
+            @if (
+              bookingForm.get('date')?.invalid &&
+              bookingForm.get('date')?.touched
+            ) {
+              <small>
+                Please select a date and time.
+              </small>
+            }
+          </div>
+          <div class="form-group">
+            <label>
+              Notes
+            </label>
+            <textarea
+              formControlName="notes"
+              placeholder="Any additional notes...">
+            </textarea>
+          </div>
+          @if (message) {
+            <div class="success">
+              {{ message }}
+            </div>
+          }
+          @if (errorMessage && property) {
+            <div class="error">
+              {{ errorMessage }}
+            </div>
+          }
+          <button
+            type="submit"
+            class="book-button"
+            [disabled]="isSaving">
+            {{
+              isSaving
+                ? 'Booking...'
+                : 'Confirm Booking'
+            }}
+          </button>
+        </form>
+      </div>
+    }
+  </div>
+</div> 

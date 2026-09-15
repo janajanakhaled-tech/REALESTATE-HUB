@@ -1,0 +1,113 @@
+.edit-property-page {
+  min-height: 100vh;
+  background: #f8f0ff;
+}
+
+.navbar {
+  height: 75px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  box-shadow: 0 2px 10px rgba(123, 63, 152, 0.08);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #7b3f98;
+}
+
+.back-button {
+  border: none;
+  background: #7b3f98;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 45px 25px;
+}
+
+.container h1 {
+  text-align: center;
+  color: #7b3f98;
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+.edit-card {
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(123, 63, 152, 0.12);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d8c5df;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.save-button {
+  width: 100%;
+  border: none;
+  background: #7b3f98;
+  color: white;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.save-button:hover {
+  background: #66337f;
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+}
+
+.message,
+.success,
+.error {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.success {
+  color: #7b3f98;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: #c03970;
+  margin-bottom: 20px;
+} 

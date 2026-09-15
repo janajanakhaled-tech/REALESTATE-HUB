@@ -1,0 +1,312 @@
+<div class="add-property-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      RealEstate Hub
+    </div>
+
+    <button
+      class="back-button"
+      (click)="goBack()">
+
+      Back to Properties
+
+    </button>
+
+  </nav>
+
+
+  <div class="form-container">
+
+    <h1>
+      Add Property
+    </h1>
+
+    <p class="subtitle">
+      Add a new property to RealEstate Hub
+    </p>
+
+
+    @if (message) {
+
+      <div class="success-message">
+        {{ message }}
+      </div>
+
+    }
+
+
+    @if (errorMessage) {
+
+      <div class="error-message">
+        {{ errorMessage }}
+      </div>
+
+    }
+
+
+    <form
+      [formGroup]="propertyForm"
+      (ngSubmit)="onSubmit()">
+
+
+      <div class="form-group">
+
+        <label>
+          Title
+        </label>
+
+        <input
+          type="text"
+          formControlName="title"
+          placeholder="Enter property title"
+        >
+
+        @if (
+          propertyForm.get('title')?.invalid &&
+          propertyForm.get('title')?.touched
+        ) {
+
+          <small>
+            Title is required
+          </small>
+
+        }
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Description
+        </label>
+
+        <textarea
+          formControlName="description"
+          placeholder="Enter property description"
+          rows="4"
+        ></textarea>
+
+        @if (
+          propertyForm.get('description')?.invalid &&
+          propertyForm.get('description')?.touched
+        ) {
+
+          <small>
+            Description is required
+          </small>
+
+        }
+
+      </div>
+
+
+      <div class="form-row">
+
+
+        <div class="form-group">
+
+          <label>
+            Price
+          </label>
+
+          <input
+            type="number"
+            formControlName="price"
+            placeholder="Enter price"
+          >
+
+          @if (
+            propertyForm.get('price')?.invalid &&
+            propertyForm.get('price')?.touched
+          ) {
+
+            <small>
+              Enter a valid price
+            </small>
+
+          }
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Bedrooms
+          </label>
+
+          <input
+            type="number"
+            formControlName="bedrooms"
+            placeholder="Number of bedrooms"
+          >
+
+          @if (
+            propertyForm.get('bedrooms')?.invalid &&
+            propertyForm.get('bedrooms')?.touched
+          ) {
+
+            <small>
+              Enter number of bedrooms
+            </small>
+
+          }
+
+        </div>
+
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Location
+        </label>
+
+        <input
+          type="text"
+          formControlName="location"
+          placeholder="Enter property location"
+        >
+
+        @if (
+          propertyForm.get('location')?.invalid &&
+          propertyForm.get('location')?.touched
+        ) {
+
+          <small>
+            Location is required
+          </small>
+
+        }
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Property Type
+        </label>
+
+        <select
+          formControlName="propertyType">
+
+          <option value="">
+            Select property type
+          </option>
+
+          <option value="Apartment">
+            Apartment
+          </option>
+
+          <option value="Villa">
+            Villa
+          </option>
+
+          <option value="House">
+            House
+          </option>
+
+          <option value="Townhouse">
+            Townhouse
+          </option>
+
+          <option value="Chalet">
+            Chalet
+          </option>
+
+        </select>
+
+
+        @if (
+          propertyForm.get('propertyType')?.invalid &&
+          propertyForm.get('propertyType')?.touched
+        ) {
+
+          <small>
+            Property type is required
+          </small>
+
+        }
+
+      </div>
+
+
+      <!-- Property Image -->
+
+      <div class="form-group">
+
+        <label>
+          Property Image
+        </label>
+
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        >
+
+        @if (selectedImage) {
+
+          <p class="file-name">
+            Selected: {{ selectedImage.name }}
+          </p>
+
+        }
+
+      </div>
+
+
+      <!-- Property Document -->
+
+      <div class="form-group">
+
+        <label>
+          Property Document
+        </label>
+
+        <input
+          type="file"
+          accept=".pdf,.doc,.docx"
+          (change)="onDocumentSelected($event)"
+        >
+
+        @if (selectedDocument) {
+
+          <p class="file-name">
+            Selected: {{ selectedDocument.name }}
+          </p>
+
+        }
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="isLoading">
+
+        @if (isLoading) {
+
+          Adding Property...
+
+        } @else {
+
+          Add Property
+
+        }
+
+      </button>
+
+
+    </form>
+
+  </div>
+
+</div> 
